@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WatchParty - Synchronized Stream & Discovery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="join-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-logo">🍿 WATCHPARTY</div>
+      <p class="modal-desc">Watch videos in real-time with synchronized playback, live chat, and shared discovery.</p>
+      <div class="input-group">
+        <label for="username-input">Your Display Name</label>
+        <input type="text" id="username-input" placeholder="e.g. Alex" maxlength="20">
+      </div>
+      <div class="input-group">
+        <label for="room-input">Room Code</label>
+        <input type="text" id="room-input" placeholder="e.g. MOVIE99" maxlength="12">
+      </div>
+      <button id="btn-enter-room" class="btn-primary">JOIN WATCH PARTY</button>
+    </div>
+  </div>
+
+  <div class="app-layout">
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-icon">🎬</span>
+        <span class="brand-title">WATCHPARTY</span>
+      </div>
+
+      <div class="header-center">
+        <div class="room-pill">
+          <span class="label">ROOM</span>
+          <span id="room-code-badge" class="room-val">----</span>
+          <button id="btn-copy-invite" title="Copy Invite Link" class="btn-icon-sm">🔗</button>
+        </div>
+        <div class="sync-metrics">
+          <span id="latency-pill" class="metric-pill">RTT: -- ms</span>
+          <span id="drift-pill" class="metric-pill">Drift: -- ms</span>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div id="host-indicator" class="host-badge">Participant</div>
+        <div class="connection-status connected" id="conn-badge">Online</div>
+      </div>
+    </header>
+
+    <main class="main-stage">
+      <div class="cinema-section">
+        <div class="video-container" id="video-wrapper">
+          <video id="shared-video" controls playsinline preload="auto"></video>
+          <div id="emoji-floating-layer" class="emoji-layer"></div>
+          <div id="sync-notice" class="sync-notice hidden">Synced</div>
+        </div>
+
+        <div class="video-toolbar">
+          <div class="video-meta">
+            <h2 id="current-video-title">Tears of Steel</h2>
+            <span id="playback-status" class="status-tag">Ready</span>
+          </div>
+
+          <div class="reaction-bar">
+            <button class="btn-reaction" data-emoji="❤️">❤️</button>
+            <button class="btn-reaction" data-emoji="🔥">🔥</button>
+            <button class="btn-reaction" data-emoji="🍿">🍿</button>
+            <button class="btn-reaction" data-emoji="😂">😂</button>
+            <button class="btn-reaction" data-emoji="👏">👏</button>
+            <button class="btn-reaction" data-emoji="😱">😱</button>
+          </div>
+        </div>
+
+        <div class="custom-url-bar">
+          <input type="url" id="custom-video-input" placeholder="Paste direct MP4 or WebM video URL...">
+          <button id="btn-load-custom" class="btn-secondary">Play Now</button>
+          <button id="btn-queue-custom" class="btn-secondary">+ Add Queue</button>
+        </div>
+
+        <div class="discovery-section">
+          <div class="discovery-header">
+            <h3>Movie Discovery & Shared Library</h3>
+            <div class="discovery-controls">
+              <input type="text" id="movie-search" placeholder="Fuzzy search title or genre...">
+              <div class="filter-pills" id="category-filters">
+                <button class="filter-btn active" data-cat="all">All</button>
+                <button class="filter-btn" data-cat="Sci-Fi">Sci-Fi</button>
+                <button class="filter-btn" data-cat="Animation">Animation</button>
+                <button class="filter-btn" data-cat="Action">Action</button>
+                <button class="filter-btn" data-cat="Comedy">Comedy</button>
+              </div>
+            </div>
+          </div>
+          <div class="movie-grid" id="movie-grid"></div>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="sidebar-tabs">
+          <button class="tab-btn active" data-tab="tab-chat">Chat</button>
+          <button class="tab-btn" data-tab="tab-queue">Queue (<span id="queue-count">0</span>)</button>
+          <button class="tab-btn" data-tab="tab-poll">Polls</button>
+          <button class="tab-btn" data-tab="tab-users">Users (<span id="user-count">0</span>)</button>
+        </div>
+
+        <div id="tab-chat" class="tab-content active">
+          <div class="chat-messages" id="chat-stream"></div>
+          <form id="chat-form" class="chat-input-row">
+            <input type="text" id="chat-input" placeholder="Type a message..." maxlength="200" autocomplete="off">
+            <button type="submit" class="btn-send">Send</button>
+          </form>
+        </div>
+
+        <div id="tab-queue" class="tab-content">
+          <div class="queue-list" id="queue-stream">
+            <div class="empty-state">Queue is empty. Browse movies below to add!</div>
+          </div>
+        </div>
+
+        <div id="tab-poll" class="tab-content">
+          <div id="active-poll-card" class="poll-card hidden">
+            <h4 id="poll-question-display">Active Poll</h4>
+            <div id="poll-options-container" class="poll-options"></div>
+            <div class="poll-meta"><span id="poll-vote-count">0 votes</span></div>
+          </div>
+          <div id="create-poll-box" class="create-poll-box">
+            <h4>Start a Group Poll</h4>
+            <input type="text" id="poll-q-input" placeholder="Poll question (e.g. Skip to next?)...">
+            <input type="text" id="poll-opt1-input" placeholder="Option 1">
+            <input type="text" id="poll-opt2-input" placeholder="Option 2">
+            <button id="btn-launch-poll" class="btn-primary-sm">Launch Poll</button>
+          </div>
+        </div>
+
+        <div id="tab-users" class="tab-content">
+          <div class="users-list" id="users-stream"></div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

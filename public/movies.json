@@ -1,0 +1,62 @@
+[
+  {
+    "id": "tears-of-steel",
+    "title": "Tears of Steel",
+    "category": "Sci-Fi",
+    "year": 2012,
+    "duration": "12m",
+    "description": "In a dystopian future, a group of scientists and warriors attempt to save the earth from rampaging robot forces.",
+    "thumbnail": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80",
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+  },
+  {
+    "id": "sintel",
+    "title": "Sintel",
+    "category": "Animation",
+    "year": 2010,
+    "duration": "15m",
+    "description": "A lonely young woman searches the desert for her baby dragon friend who was kidnapped by an ancient predator.",
+    "thumbnail": "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80",
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+  },
+  {
+    "id": "big-buck-bunny",
+    "title": "Big Buck Bunny",
+    "category": "Comedy",
+    "year": 2008,
+    "duration": "10m",
+    "description": "A giant benevolent rabbit takes hilarious revenge on three forest bullies who disturb his peaceful day.",
+    "thumbnail": "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=400&q=80",
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+  },
+  {
+    "id": "elephants-dream",
+    "title": "Elephants Dream",
+    "category": "Sci-Fi",
+    "year": 2006,
+    "duration": "11m",
+    "description": "Two individuals explore the strange, complex inner machinery of an infinite mechanical world.",
+    "thumbnail": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80",
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+  },
+  {
+    "id": "for-bigger-blazes",
+    "title": "For Bigger Blazes",
+    "category": "Action",
+    "year": 2015,
+    "duration": "1m",
+    "description": "High-octane road cycling race through dramatic mountainous canyon routes.",
+    "thumbnail": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=400&q=80",
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+  },
+  {
+    "id": "for-bigger-escapes",
+    "title": "For Bigger Escapes",
+    "category": "Action",
+    "year": 2016,
+    "duration": "1m",
+    "description": "Breathtaking high-speed desert expedition racing against the setting sun.",
+    "thumbnail": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=80",
+    "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+  }
+]
