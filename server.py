@@ -125,7 +125,7 @@ async def ws_handler(request):
                         'currentTime': client_time,
                         'serverTime': time.time(),
                         'triggeredBy': room['participants'].get(ws, {}).get('name', 'Someone')
-                    })
+                    }, exclude=ws)
 
                 elif action == 'pause' and current_room_code in rooms:
                     room = rooms[current_room_code]
@@ -139,7 +139,7 @@ async def ws_handler(request):
                         'currentTime': client_time,
                         'serverTime': time.time(),
                         'triggeredBy': room['participants'].get(ws, {}).get('name', 'Someone')
-                    })
+                    }, exclude=ws)
 
                 elif action == 'seek' and current_room_code in rooms:
                     room = rooms[current_room_code]

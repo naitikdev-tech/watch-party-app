@@ -130,18 +130,22 @@ function initWebSocket() {
       renderPoll(data.poll);
     } else if (data.type === 'play') {
       isHandlingRemote = true;
-      sharedVideo.currentTime = data.currentTime;
+      if (Math.abs(sharedVideo.currentTime - data.currentTime) > 0.4) {
+        sharedVideo.currentTime = data.currentTime;
+      }
       sharedVideo.play().catch(() => {});
       playbackStatus.textContent = 'Playing';
       showNotice(`${data.triggeredBy} played`);
-      setTimeout(() => { isHandlingRemote = false; }, 300);
+      setTimeout(() => { isHandlingRemote = false; }, 500);
     } else if (data.type === 'pause') {
       isHandlingRemote = true;
-      sharedVideo.currentTime = data.currentTime;
+      if (Math.abs(sharedVideo.currentTime - data.currentTime) > 0.4) {
+        sharedVideo.currentTime = data.currentTime;
+      }
       sharedVideo.pause();
       playbackStatus.textContent = 'Paused';
       showNotice(`${data.triggeredBy} paused`);
-      setTimeout(() => { isHandlingRemote = false; }, 300);
+      setTimeout(() => { isHandlingRemote = false; }, 500);
     } else if (data.type === 'seek') {
       isHandlingRemote = true;
       sharedVideo.currentTime = data.currentTime;
